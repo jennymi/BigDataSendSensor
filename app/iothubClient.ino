@@ -2,6 +2,7 @@ static WiFiClientSecure sslClient; // for ESP8266
 
 const char *onSuccess = "\"Successfully invoke device method\"";
 const char *notFound = "\"No method found\"";
+const char *githubLink  = "\"https://github.com/jennymi/BigDataSendSensor\"";
 
 static void sendCallback(IOTHUB_CLIENT_CONFIRMATION_RESULT result, void *userContextCallback)
 {
@@ -95,6 +96,11 @@ int deviceMethodCallback(
     const char *responseMessage = onSuccess;
     int result = 200;
 
+    if (strcmp(methodName, "github") == 0)
+    {
+         responseMessage = githubLink;
+   
+    }
     if (strcmp(methodName, "start") == 0)
     {
         start();
